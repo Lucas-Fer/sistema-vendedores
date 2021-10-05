@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesSystem.Models;
+using SalesSystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +14,8 @@ namespace SalesSystem.Controllers {
         }
 
         public IActionResult About() {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Sistema de Vendas em C#.";
+            ViewData["Developer"] = "fernandes20lucas@gmail.com";
 
             return View();
         }
