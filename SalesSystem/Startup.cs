@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SalesSystem.Models;
 using SalesSystem.Data;
+using SalesSystem.Services;
 
 namespace SalesSystem {
     public class Startup {
@@ -36,6 +37,7 @@ namespace SalesSystem {
             options.UseMySql(Configuration.GetConnectionString("SalesSystemContext"), builder => 
             builder.MigrationsAssembly("SalesSystem")));
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerServicecs>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
