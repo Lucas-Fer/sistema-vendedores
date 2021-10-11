@@ -12,6 +12,8 @@ namespace SalesSystem.Models {
         public DateTime BirthDate{ get; set; }
         // possui um departamento
         public Department Department{ get; set; }
+        // chave estrangeira para inserir o departamento
+        public int DepartmentId { get; set; }
         // possui varias vendas
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
         

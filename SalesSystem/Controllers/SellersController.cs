@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesSystem.Models;
+using SalesSystem.Models.ViewModels;
 using SalesSystem.Services;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,10 @@ using System.Threading.Tasks;
 namespace SalesSystem.Controllers {
     public class SellersController : Controller {
         private readonly SellerService _sellerService;
-        public SellersController(SellerService sellerService) {
+        private readonly DepartmentService _departmentService;
+        public SellersController(SellerService sellerService, DepartmentService departmentService) {
             _sellerService = sellerService;
+            _departmentService = departmentService;
         }
         public IActionResult Index() {
             var list = _sellerService.FindAll();
@@ -18,7 +21,9 @@ namespace SalesSystem.Controllers {
         }
 
         public IActionResult Create() {
-            return View();
+            var departments = _departmentService.FindAll();
+            var ViewModel = new SellerFormViewModel { Departments = departments };
+            return View(ViewModel);
         }
         [HttpPost]
         public IActionResult Create(Seller seller) {
