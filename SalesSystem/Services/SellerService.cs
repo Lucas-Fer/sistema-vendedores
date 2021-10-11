@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace SalesSystem.Services {
-    public class SellerServicecs {
+    public class SellerService {
         private readonly SalesSystemContext _context;
-        public SellerServicecs(SalesSystemContext context) {
+        public SellerService(SalesSystemContext context) {
             _context = context;
         }
 
