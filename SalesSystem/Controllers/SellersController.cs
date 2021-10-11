@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SalesSystem.Models;
 using SalesSystem.Services;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,16 @@ namespace SalesSystem.Controllers {
         public IActionResult Index() {
             var list = _sellerService.FindAll();
             return View(list);
+        }
+
+        public IActionResult Create() {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Seller seller) {
+            _sellerService.Insert(seller);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
