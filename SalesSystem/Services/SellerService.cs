@@ -26,9 +26,13 @@ namespace SalesSystem.Services {
         }
 
         public async Task RemoveAsync(int id) {
-            var obj = await _context.Seller.FindAsync(id);
-            _context.Seller.Remove(obj);
-            await _context.SaveChangesAsync();
+            try {
+                var obj = await _context.Seller.FindAsync(id);
+                _context.Seller.Remove(obj);
+                await _context.SaveChangesAsync();
+            } catch(DbUpdateException) {
+                throw new IntegrityException("Não pode deletar o vendendor por possuir vendas");
+            }
         }
         public async Task UpdateAsync(Seller obj) {
             bool hasAny = await _context.Seller.AnyAsync(x => x.Id == obj.Id);
